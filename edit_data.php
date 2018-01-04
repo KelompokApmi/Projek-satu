@@ -26,21 +26,21 @@ if (!isset($_SESSION['level']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PMI Indramayu</title>
-    <link rel="icon" href="../images/icon.png" type="image/png" sizes="16x16">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/css_admin.css" rel="stylesheet">
+    <link rel="icon" href="images/icon.png" type="image/png" sizes="16x16">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/css_admin.css" rel="stylesheet">
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12" style="height: 100px; background-color: #C62828">
-          <img src="../images/header.jpg">
+          <img src="images/header.jpg">
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
         <div class="item">
-                <img src="../images/admin_banner.jpg" alt="Chicago" style="width:100%;">
+                <img src="images/admin_banner.jpg" alt="Chicago" style="width:100%;">
            
            </div>
       <div class="row">
@@ -52,33 +52,41 @@ if (!isset($_SESSION['level']))
  <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="../tambah_admin.php">Tambah Admin</a></p>
-      <p><a href="../das_input_event.php">Tambahkan Event</a></p>
-      <p><a href="../das_pencatatan_pendonor.php">Pencatatan Pendonor</a></p>
-      <p><a href="../lap_anggota.php">Lihat Laporan Anggota</a></p>
-      <p><a href="../lap_event.php">Lihat Laporan Event</a></p>
-      <p><a href="../lap_notif.php">Lihat Laporan Notifikasi</a></p>
+      <p><a href="tambah_admin.php">Tambah Admin</a></p>
+      <p><a href="das_input_event.php">Tambahkan Event</a></p>
+      <p><a href="das_pencatatan_pendonor.php">Pencatatan Pendonor</a></p>
+      <p><a href="lap_anggota.php">Lihat Laporan Anggota</a></p>
+      <p><a href="lap_event.php">Lihat Laporan Event</a></p>
+      <p><a href="lap_notif.php">Lihat Laporan Notifikasi</a></p>
     </div>
     <div class="col-sm-10 text-left"> 
-     <div class="table-responsive">
+     <div>
           <h1>Edit Anggota</h1><br><br> 
-           <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Nama</th>
-        <th>Jenis Kelamin</th>
-        <th>Alamat</th>
-        <th>Tanggal Lahir</th>
-        <th>Golongan Darah</th>
-        <th>No Hp</th>
-        <th>Aksi</th>
-      </tr>
-    </thead>
-    <tbody>
-      
-    </tbody>
-    </table>       
- 
+          <?php 
+          include 'proses/koneksi.php';
+        $id=$_GET['id'];
+        $data=mysqli_query($kon,"SELECT * from biodata WHERE id_biodata='$id'");
+        while ($r=mysqli_fetch_array($data)) {
+          ?>
+          <form action="pro_edit.php" method="POST">
+            <table>
+            <tr>
+            <th width="150" style="text-align: center;">NAMA</th>
+            <td><input type="hidden" name="id" value="<?php echo $r['id_biodata']; ?>">
+            <input type="text" name="nama" value="<?php echo $r['nama'];?>">
+          </td>
+          </tr>
+            <input type="text" name="jk" value="<?php echo $r['jenis_kelamin'];?>"><br>
+            <input type="text" name="tempatLahir" value="<?php echo $r['tempat_lahir'];?>"><br>
+            <input type="date" name="tgl" value="<?php echo $r['tanggal_lahir'];?>"><br>
+            <input type="text" name="golongan" value="<?php echo $r['golongan_darah'];?>"><br>
+            <input type="text" name="telephone" value="<?php echo $r['telephone'];?>"><br>
+            <input type='submit'>
+          </table>
+          </form>
+          <?php
+        }
+       ?>
   </div>
     </div>
   </div>
@@ -95,8 +103,8 @@ if (!isset($_SESSION['level']))
     
       <p style="text-align: left; padding: 0px 150px;">
           Link<br><br>
-          <a href="https://www.pmi.or.id"><img src="../images/pmi.jpg"></a>
-          <a href="https://web.facebook.com/palangmerah?_rdc=1&_rdr"><img src="../images/pmi fb.jpg"></a>
+          <a href="https://www.pmi.or.id"><img src="images/pmi.jpg"></a>
+          <a href="https://web.facebook.com/palangmerah?_rdc=1&_rdr"><img src="images/pmi fb.jpg"></a>
     </p>
   </div>
   <div class="col-md-6">

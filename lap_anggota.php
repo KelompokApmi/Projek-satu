@@ -60,49 +60,40 @@ if (!isset($_SESSION['level']))
       <p><a href="lap_notif.php">Lihat Laporan Notifikasi</a></p>
     </div>
     <div class="col-sm-10 text-left"> 
-     <div class="table-responsive">
+     <div>
           <h1>Laporan Anggota</h1><br><br>        
-  <table class="table table-hover">
-    <thead>
+  <table class="table">
       <tr>
+        <th>No</th>
         <th>Nama</th>
+        <th>Jenis Kelamin</th>
         <th>Tempat Lahir</th>
         <th>Tanggal Lahir</th>
-        <th>Jenis Kelamin</th>
-        <th>Alamat</th>
         <th>Golongan Darah</th>
-        <th>No Hp</th>
-        <th>Aksi</th>
+        <th>Telephone</th>
+        <th>Action</th>
       </tr>
-    </thead>
-    <tbody>
-     <?php  
-include 'proses/koneksi.php';
+      <?php 
+        include 'proses/koneksi.php';
+        $data=mysqli_query($kon,"SELECT * FROM biodata ORDER BY nama");
+        $no=1;
+        while ($r=mysqli_fetch_array($data)) {
+          ?>
+           <tr>
+        <td><?php echo $no++ ?></td>
+        <td><?php echo $r['nama']; ?></td>
+        <td><?php echo $r['jenis_kelamin']; ?></td>
+        <td><?php echo $r['tempat_lahir']; ?></td>
+        <td><?php echo $r['tanggal_lahir']; ?></td>
+        <td><?php echo $r['golongan_darah']; ?></td>
+        <td><?php echo $r['telephone']; ?></td>
+        <td><a href='edit_data.php?id=<?php echo $r['id_biodata'];?>'>Edit</a><a href='proses/hapus_data.php?id=<?php echo $r['id_biodata'];?>'>Hapus</a></td>
+       </tr>
+          <?php
+        }
+       ?>
 
-$queri="Select * From biodata" ; 
-
-$hasil=mysqli_query ($kon,$queri);    //fungsi untuk SQL
-
-// perintah untuk membaca dan mengambil data dalam bentuk array
-while ($data = mysqli_fetch_array ($hasil)){
-$id = $data['id'];
- echo "
-        <tr>
-        <td>".$data['nama']."</td>
-        <td>".$data['tempat_lahir']."</td>
-        <td>".$data['tanggal_lahir']."</td>
-        <td>".$data['jenis_kelamin']."</td>
-        <td>".$data['alamat']."</td>
-        <td>".$data['golongan_darah']."</td>
-        <td>".$data['telephone']."</td>
-        <td><a href ='proses/edit_data.php'>Edit</a> <a href ='proses/hapus_data.php'>Hapus</a></td>
-        </tr> 
-        ";
-}
-
-?>
-    </tbody>
-  </table>
+    </table>  
   </div>
     </div>
   </div>
