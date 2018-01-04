@@ -45,6 +45,7 @@ if (!isset($_SESSION['level']))
            </div>
       <div class="row">
         <div class="col-md-12" style="background-color: #D50000; height: 50px; padding: 15px">
+        <a href="das_admin.php">Dashboard</a>
         <a href="logout.php">Keluar</a>
         </div>
       </div>

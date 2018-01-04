@@ -44,6 +44,7 @@ if (!isset($_SESSION['level']))
            </div>
       <div class="row">
         <div class="col-md-12" style="background-color: #D50000; height: 50px; padding: 15px">
+        <a href="das_admin.php">Dashboard</a>
         <a href="logout.php">Keluar</a>
         </div>
       </div>
@@ -59,7 +60,58 @@ if (!isset($_SESSION['level']))
       <p><a href="lap_notif.php">Lihat Laporan Notifikasi</a></p>
     </div>
     <div class="col-sm-10 text-left"> 
-     <h1>Selamat Datang <?php echo $_SESSION['username']; ?> </h1>
+     <h1>Selamat Datang <?php echo $_SESSION['username']; ?> </h1><hr>
+     <?php
+// membuat koneksi dengan database
+$con = mysqli_connect("localhost","root","","paging");
+
+// Langkah 1. Tentukan batas, cek halaman dan posisi data.
+$batas = 5;
+$halaman = @$_GET['halaman'];
+if(empty($halaman)){
+  $posisi = 0;
+  $halaman = 1;
+}else{
+  $posisi = ($halaman - 1) * $batas;
+}
+
+// Langkah 2. Sesuaikan Query dengan posisi dan batas
+$paging = mysqli_query($con,"select * from paging limit $posisi,$batas");
+
+echo"<table>
+<tr>
+ <th>No</th>
+ <th>Nama</th>
+ <th>Alamat</th>
+</tr>";
+
+$no = 1+$posisi;
+while($r=mysqli_fetch_array($paging)){
+  echo"<tr>
+  <td>$no</td>
+  <td>$r[nama]</td>
+  <td>$r[alamat]</td>
+  </tr>";
+  $no++;
+}
+echo"</table>";
+
+// Langkah 3 : Hitung Total data dan halaman serta link 1,2,3..
+$paging2 = mysqli_query($con,"select * from paging");
+$jmldata = mysqli_num_rows($paging2);
+$jmlhalaman = ceil($jmldata/$batas);
+
+echo"<br \> Halaman : ";
+for($i=1; $i<=$jmlhalaman; $i++){
+  if($i != $halaman){
+    echo"<a href=\"das_admin.php?halaman=$i\">$i</a> | ";
+  }else{
+    echo"<b>$i</b> | ";
+  }
+}
+
+  echo "<p>Total anggota : <b>$jmldata</b> orang</p>";
+?>
      
   </div>
     </div>
