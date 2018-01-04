@@ -16,8 +16,16 @@ $level			="user";
 // query SQL untuk insert data
 $query="INSERT INTO biodata SET email='$email',password='$password',telephone='$telephone',nama='$nama',jenis_kelamin='$jenis_kelamin',alamat='$alamat',tempat_lahir='$tempat_lahir',tanggal_lahir='$tanggal',golongan_darah='$golongan_darah', level='$level'";
 //$query2="INSERT INTO pmi_indramayu.login(email,password,level) SELECT email,password,level FROM pmi_indramayu.biodata";
-mysqli_query($kon,$query);
+mysqli_query($kon,$query);{
 //mysqli_query($kon,$query2);
 // mengalihkan ke halaman index.php
-header("location:../formulir_donor.php");
 ?>
+ <script type="text/javascript">
+ 	alert("Data Berhasil Disimpan");
+ 	window.location.href='../formulir_donor.php';
+ </script>
+  <?php
+}
+
+
+ ?>
