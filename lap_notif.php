@@ -69,6 +69,7 @@ if (!isset($_SESSION['level']))
         <th>Nomor Tujuan</th>
         <th>Notifikasi</th>
         <th>Status</th>
+		<th>Creator ID</th>
       </tr>
     </thead>
     <tbody>
@@ -88,6 +89,8 @@ $id = $data['id'];
         <td>".$data['DestinationNumber']."</td>
         <td>".$data['TextDecoded']."</td>
         <td>".$data['Status']."</td>
+		<td>".$data['CreatorID']."</td>
+		</tr>
         ";
 }
 

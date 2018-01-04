@@ -33,7 +33,7 @@
 		//jika proses insert ke tabel outbox sukses maka kirim sms ucapan
 		if($hasil2){
 			//isi pesan sms peringatan donor
-			$pesanSMS = "Waktunya mendonorkan darah anda, dari kami PMI INDRAMAYU.";
+			$pesanSMS = "Waktunya untuk mendonorkan darah anda, dari kami PMI INDRAMAYU.";
 
 			//pesan kirim sms via inser data ke tabel outbox
 			$query2 = "INSERT INTO outbox (DestinationNumber, TextDecoded, CreatorID) VALUES ('$telephone','$pesanSMS','Gammu')";

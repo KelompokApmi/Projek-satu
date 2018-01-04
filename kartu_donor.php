@@ -56,11 +56,15 @@ if (isset($_SESSION['level']))
       <tr>
       <th>ID Pendonor</th>
       <th>Nama</th>
+	  <th>Alamat Pendonor</th>
       <th>Golongan Darah</th>
       <th>Tanggal Donor</th>
       <th>Tempat Donor</th>
       <th width="100px">Ttd</th>
     </tr>
+	<tr>
+	<td height="300px"></td>
+	</tr>
     <?php  
 include 'proses/koneksi.php';
 
@@ -76,6 +80,7 @@ $id = $data['id'];
         <tr>
         <td>".$data['id_biodata']."</td>
         <td>".$data['nama']."</td>
+		<td>".$data['alamat']."</td>
         <td>".$data['golongan_darah']."</td>
         <td>".$data['tanggal_donor']."</td>
         <td>".$data['tempat']."</td>
