@@ -55,42 +55,47 @@ if (!isset($_SESSION['level']))
       <p><a href="tambah_admin.php">Tambah Admin</a></p>
       <p><a href="das_input_event.php">Tambahkan Event</a></p>
       <p><a href="das_pencatatan_pendonor.php">Pencatatan Pendonor</a></p>
-      <p><a href="das_admin.php">Lihat Laporan Anggota</a></p>
+      <p><a href="lap_anggota.php">Lihat Laporan Anggota</a></p>
       <p><a href="lap_event.php">Lihat Laporan Event</a></p>
       <p><a href="lap_notif.php">Lihat Laporan Notifikasi</a></p>
     </div>
     <div class="col-sm-10 text-left"> 
      <div>
-          <h1>Laporan Event</h1><br><br> 
-          <table class="table">
-      <tr>
-        <th>No</th>
-        <th>Nama Event</th>
-        <th>Tempat Event</th>
-        <th>Tanggal Event</th>
-        <th>Jam</th>
-        <th>Action</th>
-      </tr>
-      <?php 
-        include 'proses/koneksi.php';
-        $data=mysqli_query($kon,"SELECT * FROM event ORDER BY tanggal_event");
-        $no=1;
+          <h1>Edit Event</h1><br><br> 
+          <?php 
+          include 'proses/koneksi.php';
+        $id=$_GET['id'];
+        $data=mysqli_query($kon,"SELECT * from event WHERE id_event='$id'");
         while ($r=mysqli_fetch_array($data)) {
           ?>
+          <form action="proses/proses_edit_data_event.php" method="POST">
+            <table>
+            <tr>
+            <th width="150" style="text-align: center;">NAMA Event</th>
+            <td><input type="hidden" name="id" value="<?php echo $r['id_event']; ?>">
+            <input type="text" name="namaevent" value="<?php echo $r['nama_event'];?>">
+          </td>
+          </tr>
+          <tr>
+            <th width="150" style="text-align: center;">Tempat Event</th>
+            <td><input type="text" name="tempatevent" value="<?php echo $r['tempat_event'];?>"></td>
+          </tr>
+          <tr>
+            <th width="150" style="text-align: center;">Tanggal Event</th>
+            <td><input type="date" name="tgl" value="<?php echo $r['tanggal_event'];?>"></td>
+          </tr>
            <tr>
-        <td><?php echo $no++ ?></td>
-        <td><?php echo $r['nama_event']; ?></td>
-        <td><?php echo $r['tempat_event']; ?></td>
-        <td><?php echo $r['tanggal_event']; ?></td>
-        <td><?php echo $r['jam']; ?></td>
-        <td><a href='edit_data_event.php?id=<?php echo $r['id_event'];?>'>Edit</a><a href='proses/hapus_data_event.php?id=<?php echo $r['id_event'];?>'>Hapus</a></td>
-       </tr>
+            <th width="150" style="text-align: center;">Jam</th>
+            <td><input type="time" name="jam" value="<?php echo $r['jam'];?>"></td>
+          </tr>
+            <tr>
+              <td style="text-align: center;""><input type='submit' value="Edit"></td>
+            </tr>
+          </table>
+          </form>
           <?php
         }
        ?>
-
-    </table>         
- 
   </div>
     </div>
   </div>

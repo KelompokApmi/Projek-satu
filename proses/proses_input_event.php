@@ -12,5 +12,5 @@ $jam   				= $_POST['jam'];
 $query="INSERT INTO event SET nama_event='$event',tempat_event='$tempat',tanggal_event='$tanggal',jam='$jam'";
 mysqli_query($kon,$query);
 // mengalihkan ke halaman index.php
-header("location:../das_admin.php");
+header("location:../lap_event.php");
 ?>
