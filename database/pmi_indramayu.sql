@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2018 at 08:24 AM
--- Server version: 10.1.24-MariaDB
--- PHP Version: 7.1.6
+-- Generation Time: Jan 04, 2018 at 07:47 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -47,21 +45,8 @@ CREATE TABLE `biodata` (
 --
 
 INSERT INTO `biodata` (`id_biodata`, `email`, `password`, `level`, `telephone`, `nama`, `jenis_kelamin`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `golongan_darah`) VALUES
-(4, '1syahrulgunawan1@gmail.com', 'DANKAMU', 'user', '083829144988', 'LUKMAN', 'Laki-Laki', 'PSTROL', 'INDRAMYU', '1998-10-19', 'B'),
-(5, 'wk@wk.com', '1', 'user', '08978796985', 'wkwk', 'Laki-Laki', 'indramayu', 'indramayu', '2018-01-03', 'A'),
-(6, 'imamuhayat@gmail.com', '123456789', 'user', '089649800869', 'imam muhayat', 'Laki-Laki', 'indramayu', 'indramayu', '0005-05-05', 'o'),
-(10, '', '', 'user', '', 'lukman', 'Laki-Laki', 'sindangkerta', 'cirebon', '1965-12-05', 'a'),
-(11, '', '', 'user', '', '', '', '', '', '0000-00-00', ''),
-(12, '', '', 'user', '', '', '', '', '', '0000-00-00', ''),
-(13, 'la@la.la', '123', 'user', '00', 'Dodo', 'Laki-Laki', 'Lohbener', 'cilegon', '2017-12-31', 'A'),
-(14, 'hj@gmail.com', 'kjsdjsfh', 'user', 'iwrhwiji23', 'mjfbeijf1234', 'Laki-Laki', 'ghvgv5', '5635indramayu', '2018-01-09', 'u'),
-(15, 'dheamahdavikia1999@gmail.com', '28041999', 'user', '', 'dhea', 'Perempuan', 'indramayu', 'indramayu', '2016-01-22', 'b'),
-(16, 'diah@gmail.com', 'diah', 'user', '12345', 'diah', 'Perempuan', 'dukuh', 'indramayu', '2018-01-16', 'bi'),
-(17, 'neta@gmail.com', 'neta', 'user', '098765443', 'livia', 'Perempuan', 'polindra', 'indramayu', '2200-12-08', 'o'),
-(18, 'ikapricilya099@gmail.com', 'pricilya099', 'user', '083822693388', 'ika pricilya', 'Laki-Laki', 'desa legok', 'jakarta', '2018-04-09', 'B'),
-(20, 'wulandiani14@yahoo.com', 'wulan1405', 'user', '089687755025', 'wulan', '', 'waru', '', '1999-05-14', 'A'),
-(21, 'mahmudanurinayatun@gmail.com', '123qwe123', 'user', '081912069704', 'Nur Inayatun Mahmuda', 'Perempuan', 'Indramayu', 'Indramayu', '1997-07-22', '0'),
-(22, 'koriah11ag@gmail.com', '1234', 'user', '08978796985', 'Koriah', 'Perempuan', 'indramayu', 'indramayu', '1998-08-11', 'A');
+(1, '1syahrulgunawan1@gmail.com', 'kamu', 'user', '08978796985', 'SYAHRUL GUNAWAN', 'Laki-Laki', 'PATROL', 'INDRAMAYU', '1998-10-19', 'B'),
+(2, 'kamu@gmail.com', 'kamu', 'user', '08123232111', 'Koriah', 'Perempuan', 'PATROL', 'INDRAMAYU', '1998-12-09', 'A');
 
 -- --------------------------------------------------------
 
@@ -120,9 +105,25 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id_event`, `nama_event`, `tempat_event`, `tanggal_event`, `jam`) VALUES
-(23, 'Donor Darah Sehat', 'Politeknik Negeri Indramayu', '2017-11-03', '09:00'),
-(24, 'nama sing bener', 'sadjk', '2018-01-03', '07:29'),
-(25, '<body style=\"bgcolor=black\"></body>', 'indramayu', '2018-01-03', '07:00');
+(23, 'Donor Darah Sehat UYE', 'Politeknik Negeri Indramayu', '2017-11-28', '10:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `galeri`
+--
+
+CREATE TABLE `galeri` (
+  `id_galeri` int(11) NOT NULL,
+  `photo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `galeri`
+--
+
+INSERT INTO `galeri` (`id_galeri`, `photo`) VALUES
+(9, 'POLINDRA.png');
 
 -- --------------------------------------------------------
 
@@ -504,6 +505,12 @@ ALTER TABLE `event`
   ADD PRIMARY KEY (`id_event`);
 
 --
+-- Indexes for table `galeri`
+--
+ALTER TABLE `galeri`
+  ADD PRIMARY KEY (`id_galeri`);
+
+--
 -- Indexes for table `inbox`
 --
 ALTER TABLE `inbox`
@@ -565,12 +572,17 @@ ALTER TABLE `sentitems`
 -- AUTO_INCREMENT for table `biodata`
 --
 ALTER TABLE `biodata`
-  MODIFY `id_biodata` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_biodata` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id_event` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_event` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT for table `galeri`
+--
+ALTER TABLE `galeri`
+  MODIFY `id_galeri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `inbox`
 --
@@ -600,7 +612,6 @@ ALTER TABLE `pbk_groups`
 --
 ALTER TABLE `donor`
   ADD CONSTRAINT `donor_ibfk_1` FOREIGN KEY (`id_biodata`) REFERENCES `biodata` (`id_biodata`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
