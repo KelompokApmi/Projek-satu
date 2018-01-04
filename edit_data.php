@@ -1,23 +1,24 @@
 <?php
-  error_reporting(0);
+// memulai session
 session_start();
+error_reporting(0);
 if (isset($_SESSION['level']))
 {
-
-   if ($_SESSION['level'] == "admin")
-   {
-      include 'konten-admin.php';
+  // jika level admin
+  if ($_SESSION['level'] == "admin")
+   {   
    }
+   // jika kondisi level user maka akan diarahkan ke halaman lain
    else if ($_SESSION['level'] == "user")
    {
-       include 'konten-user.php';
-   }}
-else{
-    header('location: ../projek-satu/index.php');
-
+       header('location:das_biodata.php');
+   }
 }
-
-?>
+if (!isset($_SESSION['level']))
+{
+  header('location:../projek-satu/index.php');
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,7 +40,7 @@ else{
       <div class="row">
         <div class="col-md-12">
         <div class="item">
-                <img src="images/user_banner.jpg" alt="Chicago" style="width:100%;">
+                <img src="images/admin_banner.jpg" alt="Chicago" style="width:100%;">
            
            </div>
       <div class="row">
@@ -51,48 +52,87 @@ else{
  <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="das_biodata.php">Biodata</a></p>
-      <p><a href="das_riwayatdonor.php">Riwayat Donor</a></p>
-      <p><a href="kartu_donor.php">Cetak Kartu Donor</a></p>
+      <p><a href="tambah_admin.php">Tambah Admin</a></p>
+      <p><a href="das_input_event.php">Tambahkan Event</a></p>
+      <p><a href="das_pencatatan_pendonor.php">Pencatatan Pendonor</a></p>
+      <p><a href="lap_anggota.php">Lihat Laporan Anggota</a></p>
+      <p><a href="lap_event.php">Lihat Laporan Event</a></p>
+      <p><a href="lap_notif.php">Lihat Laporan Notifikasi</a></p>
     </div>
     <div class="col-sm-10 text-left"> 
-              <h1>Profile Anggota</h1><br><br>        
+     <div class="table-responsive">
+          <h1>Laporan Anggota</h1><br><br>        
   <table class="table table-hover">
     <thead>
       <tr>
         <th>Nama</th>
+        <th>Tempat Lahir</th>
+        <th>Tanggal Lahir</th>
         <th>Jenis Kelamin</th>
         <th>Alamat</th>
-        <th>Tanggal Lahir</th>
         <th>Golongan Darah</th>
         <th>No Hp</th>
         <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
-     <?php  
-include 'proses/koneksi.php';
-session_start();
-$queri="Select * From biodata where id_biodata='$_SESSION[id]'" ;  
-$hasil=mysqli_query ($kon,$queri);    //fungsi untuk SQL
-
-// perintah untuk membaca dan mengambil data dalam bentuk array
-while ($data = mysqli_fetch_array ($hasil)){
-$id = $data['id'];
- echo "    
-        <tr>
-        <td>".$data['nama']."</td>
-        <td>".$data['jenis_kelamin']."</td>
-        <td>".$data['alamat']."</td>
-        <td>".$data['tanggal_lahir']."</td>
-        <td>".$data['golongan_darah']."</td>
-        <td>".$data['telephone']."</td>
-        <td><a href ='#' clas='btn btn-primary' data-target='#dialog-barang' data-toggle='modal'>Edit</a></td>
-        </tr> 
-        ";
+     <?php include "koneksi.php";
+$nis=$_GET['nis'];
+$sqlsiswa=mysql_query("select * from siswa where nis='".$nis."'");
+$datasiswa=mysql_fetch_array($sqlsiswa);
+if(isset($_POST['edit'])) {
+  $id=$_GET['id'];
+  $nis=$_POST['nis'];
+  $nama=$_POST['nama'];
+  $alamat=$_POST['alamat'];
+  $kelamin=$_POST['kelamin'];
+  $sqledit=mysql_query("update siswa set nis='".$nis."',nama='".$nama."',alamat='".$alamat."',kelamin='".$kelamin."' where nis='".$id."'");
+  echo "<center>Data siswa berhasil diedit</center>";
+  echo "<meta http-equiv='refresh' content=3;url='./'>"; 
+  }
 ?>
+<form method="post" action="./edit.php?&id=<?=$datasiswa['nis'];?>">
+<table width="600" cellpadding="0" cellspacing="0" align="center">
+<tr>
+<td colspan="3" align="center"><h2>Edit Data Siswa</h2></td>
+</tr>
+<tr>
+<td>NIS</td>
+<td>:</td>
+<td><input type="text" name="nis" value="<?=$datasiswa['nis'];?>"></td>
+</tr>
+<tr>
+<td>Nama</td>
+<td>:</td>
+<td><input type="text" name="nama" value="<?=$datasiswa['nama'];?>"></td>
+</tr>
+<tr>
+<td>Alamat</td>
+<td>:</td>
+<td><textarea name="alamat"><?=$datasiswa['alamat'];?></textarea></td>
+</tr>
+<tr>
+<td>Jenis Kelamin</td>
+<td>:</td>
+<td><select name="kelamin">
+<option value="<?=$datasiswa['kelamin'];?>" selected><?=$datasiswa['kelamin'];?></option>
+<option value="Laki - Laki">Laki - Laki</option>
+<option value="Perempuan">Perempuan</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+<td><input type="submit" name="edit" value="Edit"> &nbsp; <input type="reset" name="batal" value="Batal"></td>
+</tr>
+</form>
     </tbody>
   </table>
+  </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid">
 <div class="row" style="height: 5px; background-color: #D50000;">
   &nbsp;
@@ -126,7 +166,6 @@ $id = $data['id'];
   </div>
 </footer>
 
-</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
