@@ -13,7 +13,7 @@ if (isset($_SESSION['level']))
        include 'konten-user.php';
    }}
 else{
-    header('location: ../porjek-satu/index.php');
+    header('location: ../projek-satu/index.php');
 
 }
 

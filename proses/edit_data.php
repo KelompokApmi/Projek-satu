@@ -26,21 +26,21 @@ if (!isset($_SESSION['level']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PMI Indramayu</title>
-    <link rel="icon" href="images/icon.png" type="image/png" sizes="16x16">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/css_admin.css" rel="stylesheet">
+    <link rel="icon" href="../images/icon.png" type="image/png" sizes="16x16">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/css_admin.css" rel="stylesheet">
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12" style="height: 100px; background-color: #C62828">
-          <img src="images/header.jpg">
+          <img src="../images/header.jpg">
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
         <div class="item">
-                <img src="images/admin_banner.jpg" alt="Chicago" style="width:100%;">
+                <img src="../images/admin_banner.jpg" alt="Chicago" style="width:100%;">
            
            </div>
       <div class="row">
@@ -52,82 +52,33 @@ if (!isset($_SESSION['level']))
  <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="tambah_admin.php">Tambah Admin</a></p>
-      <p><a href="das_input_event.php">Tambahkan Event</a></p>
-      <p><a href="das_pencatatan_pendonor.php">Pencatatan Pendonor</a></p>
-      <p><a href="lap_anggota.php">Lihat Laporan Anggota</a></p>
-      <p><a href="lap_event.php">Lihat Laporan Event</a></p>
-      <p><a href="lap_notif.php">Lihat Laporan Notifikasi</a></p>
+      <p><a href="../tambah_admin.php">Tambah Admin</a></p>
+      <p><a href="../das_input_event.php">Tambahkan Event</a></p>
+      <p><a href="../das_pencatatan_pendonor.php">Pencatatan Pendonor</a></p>
+      <p><a href="../lap_anggota.php">Lihat Laporan Anggota</a></p>
+      <p><a href="../lap_event.php">Lihat Laporan Event</a></p>
+      <p><a href="../lap_notif.php">Lihat Laporan Notifikasi</a></p>
     </div>
     <div class="col-sm-10 text-left"> 
      <div class="table-responsive">
-          <h1>Laporan Anggota</h1><br><br>        
-  <table class="table table-hover">
+          <h1>Edit Anggota</h1><br><br> 
+           <table class="table table-hover">
     <thead>
       <tr>
         <th>Nama</th>
-        <th>Tempat Lahir</th>
-        <th>Tanggal Lahir</th>
         <th>Jenis Kelamin</th>
         <th>Alamat</th>
+        <th>Tanggal Lahir</th>
         <th>Golongan Darah</th>
         <th>No Hp</th>
         <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
-     <?php include "koneksi.php";
-$nis=$_GET['nis'];
-$sqlsiswa=mysql_query("select * from siswa where nis='".$nis."'");
-$datasiswa=mysql_fetch_array($sqlsiswa);
-if(isset($_POST['edit'])) {
-  $id=$_GET['id'];
-  $nis=$_POST['nis'];
-  $nama=$_POST['nama'];
-  $alamat=$_POST['alamat'];
-  $kelamin=$_POST['kelamin'];
-  $sqledit=mysql_query("update siswa set nis='".$nis."',nama='".$nama."',alamat='".$alamat."',kelamin='".$kelamin."' where nis='".$id."'");
-  echo "<center>Data siswa berhasil diedit</center>";
-  echo "<meta http-equiv='refresh' content=3;url='./'>"; 
-  }
-?>
-<form method="post" action="./edit.php?&id=<?=$datasiswa['nis'];?>">
-<table width="600" cellpadding="0" cellspacing="0" align="center">
-<tr>
-<td colspan="3" align="center"><h2>Edit Data Siswa</h2></td>
-</tr>
-<tr>
-<td>NIS</td>
-<td>:</td>
-<td><input type="text" name="nis" value="<?=$datasiswa['nis'];?>"></td>
-</tr>
-<tr>
-<td>Nama</td>
-<td>:</td>
-<td><input type="text" name="nama" value="<?=$datasiswa['nama'];?>"></td>
-</tr>
-<tr>
-<td>Alamat</td>
-<td>:</td>
-<td><textarea name="alamat"><?=$datasiswa['alamat'];?></textarea></td>
-</tr>
-<tr>
-<td>Jenis Kelamin</td>
-<td>:</td>
-<td><select name="kelamin">
-<option value="<?=$datasiswa['kelamin'];?>" selected><?=$datasiswa['kelamin'];?></option>
-<option value="Laki - Laki">Laki - Laki</option>
-<option value="Perempuan">Perempuan</option>
-</select>
-</td>
-</tr>
-<tr>
-<td colspan="2">&nbsp;</td>
-<td><input type="submit" name="edit" value="Edit"> &nbsp; <input type="reset" name="batal" value="Batal"></td>
-</tr>
-</form>
+      
     </tbody>
-  </table>
+    </table>       
+ 
   </div>
     </div>
   </div>
@@ -144,8 +95,8 @@ if(isset($_POST['edit'])) {
     
       <p style="text-align: left; padding: 0px 150px;">
           Link<br><br>
-          <a href="https://www.pmi.or.id"><img src="images/pmi.jpg"></a>
-          <a href="https://web.facebook.com/palangmerah?_rdc=1&_rdr"><img src="images/pmi fb.jpg"></a>
+          <a href="https://www.pmi.or.id"><img src="../images/pmi.jpg"></a>
+          <a href="https://web.facebook.com/palangmerah?_rdc=1&_rdr"><img src="../images/pmi fb.jpg"></a>
     </p>
   </div>
   <div class="col-md-6">
