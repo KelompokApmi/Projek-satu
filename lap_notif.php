@@ -61,48 +61,69 @@ if (!isset($_SESSION['level']))
       <p><a href="lap_notif.php">Lihat Laporan Notifikasi</a></p>
     </div>
     <div class="col-sm-10 text-left"> 
-     <div class="table-responsive">
-          <h1>Laporan Notifikasi</h1><br><br>        
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Tanggal Pengiriman</th>
-        <th>Nomor Tujuan</th>
-        <th>Notifikasi</th>
-        <th>Status</th>
-		<th>Creator ID</th>
-      </tr>
-    </thead>
-    <tbody>
-     <?php  
+     <div>
+          <h1>Laporan Notifikasi</h1><br><br>
+          <?php
+// membuat koneksi dengan database
 include 'proses/koneksi.php';
 
-$queri="Select * From sentitems" ;  //menampikan SEMUA data dari tabel siswa
-
-$hasil=mysqli_query ($kon,$queri);    //fungsi untuk SQL
-
-// perintah untuk membaca dan mengambil data dalam bentuk array
-while ($data = mysqli_fetch_array ($hasil)){
-$id = $data['id'];
- echo "    
-        <tr>
-        <td>".$data['SendingDateTime']."</td>
-        <td>".$data['DestinationNumber']."</td>
-        <td>".$data['TextDecoded']."</td>
-        <td>".$data['Status']."</td>
-		<td>".$data['CreatorID']."</td>
-		</tr>
-        ";
+// Langkah 1. Tentukan batas, cek halaman dan posisi data.
+$batas = 5;
+$halaman = @$_GET['halaman'];
+if(empty($halaman)){
+  $posisi = 0;
+  $halaman = 1;
+}else{
+  $posisi = ($halaman - 1) * $batas;
 }
 
-?>
-    </tbody>
-  </table>
+// Langkah 2. Sesuaikan Query dengan posisi dan batas
+$paging = mysqli_query($kon,"select * from sentitems limit $posisi,$batas");
+
+echo"<table>
+<tr>
+ <th>No</th>
+ <th>Tanggal Pengiriman</th>
+ <th>Nomer Tujuan</th>
+ <th>Notifikasi</th>
+  <th>Status</th>
+  <th>Creator ID</th>
+</tr>";
+
+$no = 1+$posisi;
+while($r=mysqli_fetch_array($paging)){
+  echo"<tr>
+  <td>$no</td>
+  <td>$r[SendingDateTime]</td>
+  <td>$r[DestinationNumber]</td>
+    <td>$r[TextDecoded]</td>
+     <td>$r[Status]</td>
+      <td>$r[CreatorID]</td>
+  </tr>";
+  $no++;
+}
+echo"</table>";
+// Langkah 3 : Hitung Total data dan halaman serta link 1,2,3..
+$paging2 = mysqli_query($kon,"select * from sentitems");
+$jmldata = mysqli_num_rows($paging2);
+$jmlhalaman = ceil($jmldata/$batas);
+
+echo"<br \> Halaman : ";
+for($i=1; $i<=$jmlhalaman; $i++){
+  if($i != $halaman){
+    echo"<a href=\"lap_notif.php?halaman=$i\">$i</a> | ";
+  }else{
+    echo"<b>$i</b> | ";
+  }
+}
+
+  echo "<p>Total Notifikasi : <b>$jmldata</b></p>";
+?>    
   </div>
     </div>
   </div>
 </div>
-
+     
 <div class="container-fluid">
 <div class="row" style="height: 5px; background-color: #D50000;">
   &nbsp;
