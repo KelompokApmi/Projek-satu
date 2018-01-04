@@ -154,23 +154,56 @@ Secara Internasional, keberadaan PMI diakui oleh Komite Palang Merah Internasion
 
 Saat ini, PMI telah berdiri di 33 Provinsi, 371 Kabupaten/Kota dan 2.654 Kecamatan (data per-Maret 2010). PMI mempunyai hampir 1,5 juta sukarelawan yang siap melakukan pelayanan.</p>
             <br><br><br><br><br>
-              ADD COMMENT
+               ADD COMMENT
               <hr>
-              <form action="/action_page.php">
-    <div class="form-group">
-      <label for="email">Name:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter Name" name="email">
-    </div>
-     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-    </div>
-     <div class="form-group">
-  <label for="comment">Comment:</label>
-  <textarea class="form-control" rows="5" id="comment">Comment here...</textarea>
-</div> 
-     <button type="submit" class="btn btn-primary">Kirim</button>
-  </form><br>
+              <?php
+    include 'proses/koneksi.php';
+    $skomentar = "SELECT * from komentar where flag='1'";
+    $selectkmt = mysqli_query($kon,$skomentar);
+    while($select_result = mysqli_fetch_array($selectkmt))
+    {
+    $idk          = $select_result['idk'] ;
+    $nama         = $select_result['nama'] ;
+    $komentar       = $select_result['komentar'] ;
+    $tglk         = $select_result['tglk'] ;
+    echo"
+
+                    <li class='list-group-item'>
+                        <div class='row'>
+                            <div class='col-xs-10 col-md-11'>
+                                <div>
+                                    
+                                    <div class='mic-info'>
+                                        oleh: $nama tanggal: $tglk
+                                    </div>
+                                </div>
+                                <div>
+                                    komentar: $komentar
+                                </div>               
+              
+                            </div>
+                        </div>
+                    </li>
+            ";}  ?>
+              <hr>
+              <form role="form" method='POST' action='proses/insert-komentar1.php'> 
+         <div class="register-top-grid">          
+                                       
+           <div class="form-group">
+            <span>Nama<label>*</label></span>
+            <input id="nama" name="nama" placeholder="Enter Name" class="form-control" required="required" type="text">
+           </div>
+           <div class="form-group">
+             <span>Email</span>
+             <input id="email" name="email" placeholder="Enter Email" class="form-control" required="required" type="text">
+             </div>
+           
+             <span>Komentar</span>
+             <textarea id="komentar" placeholder="komentar" name="komentar" class="form-control"></textarea><br/>                                  
+             <input type="submit" class="btn btn-primary" value="submit">          
+           </div>
+             
+        </form><br>
           </div>
         </div>
     </div>
