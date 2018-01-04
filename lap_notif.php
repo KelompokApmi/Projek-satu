@@ -61,7 +61,7 @@ if (!isset($_SESSION['level']))
     </div>
     <div class="col-sm-10 text-left"> 
      <div class="table-responsive">
-          <h1>Laporan Event</h1><br><br>        
+          <h1>Laporan Notifikasi</h1><br><br>        
   <table class="table table-hover">
     <thead>
       <tr>
