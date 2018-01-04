@@ -68,20 +68,40 @@ if (!isset($_SESSION['level']))
         $data=mysqli_query($kon,"SELECT * from biodata WHERE id_biodata='$id'");
         while ($r=mysqli_fetch_array($data)) {
           ?>
-          <form action="pro_edit.php" method="POST">
+          <form action="proses/proses_edit_data.php" method="POST">
             <table>
             <tr>
             <th width="150" style="text-align: center;">NAMA</th>
             <td><input type="hidden" name="id" value="<?php echo $r['id_biodata']; ?>">
             <input type="text" name="nama" value="<?php echo $r['nama'];?>">
           </td>
+          </tr><br>
+          <tr>
+            <th width="150" style="text-align: center;">Jenis Kelamin</th>
+            <td>
+            <input type="radio" name="jenis_kelamin" value="Laki-Laki" checked>Laki-Laki
+            <input type="radio" name="jenis_kelamin" value="Perempuan">Perempuan
+            </td>
           </tr>
-            <input type="text" name="jk" value="<?php echo $r['jenis_kelamin'];?>"><br>
-            <input type="text" name="tempatLahir" value="<?php echo $r['tempat_lahir'];?>"><br>
-            <input type="date" name="tgl" value="<?php echo $r['tanggal_lahir'];?>"><br>
-            <input type="text" name="golongan" value="<?php echo $r['golongan_darah'];?>"><br>
-            <input type="text" name="telephone" value="<?php echo $r['telephone'];?>"><br>
-            <input type='submit'>
+          <tr>
+            <th width="150" style="text-align: center;">Tempat Lahir</th>
+            <td><input type="text" name="tempatlahir" value="<?php echo $r['tempat_lahir'];?>"></td>
+          </tr>
+          <tr>
+            <th width="150" style="text-align: center;">Tanggal Lahir</th>
+            <td><input type="date" name="tgl" value="<?php echo $r['tanggal_lahir'];?>"></td>
+          </tr>
+          <tr>
+            <th width="150" style="text-align: center;">Golongan Darah</th>
+            <td><input type="text" name="golongan_darah" value="<?php echo $r['golongan_darah'];?>"></td>
+          </tr>
+          <tr>
+            <th width="150" style="text-align: center;">Telephone</th>
+            <td><input type="text" name="telephone" value="<?php echo $r['telephone'];?>"></td>
+          </tr>
+            <tr>
+              <td style="text-align: center;""><input type='submit' value="Edit"></td>
+            </tr>
           </table>
           </form>
           <?php
