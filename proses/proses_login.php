@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'koneksi.php';
+if($_POST['captcha']==$_SESSION['captcha']){
 $email = $_POST['email'];
 $password = $_POST['password'];
 $login  ='admin';
@@ -62,6 +63,35 @@ else
 
 </center>
 </body>
-</html>';
+</html>';}
+else{ echo '<html lang="en">
+<head>
+<title>PMI INDRAMAYU</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/bootstrap.min.js"></script>
+<style>
+.btn-default {
+  border-radius: 0;
+}
+</style>
+</head>
+<body>
+<center>
+<div class="container">
+<div class="alert alert-danger">
+<strong>
+<center>Captcha yang anda Masukan <h2>SALAH<h2></br> 
+<form action="../index.php" method="POST">
+<button type="submit" class="btn btn-primary">Kembali</button>
+</form>
+</div>
+<center></strong>
+</div>
+
+</center>
+</body>
+</html>';}
 ?>
 
