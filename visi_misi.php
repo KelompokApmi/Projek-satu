@@ -131,8 +131,12 @@
     <label for="exampleInputPassword1">Password</label>
     <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
   </div>
+  <div class="form-group">
+    <label for="exampleInputCaptcha1">Captcha</label>
+    <input name="captcha" type="text" class="form-control" id="exampleInputCaptcha1" placeholder="Captcha"><img src="captcha.php">
+  </div>
   <button type="submit" class="btn btn-primary">Masuk</button>
-</form><br><br><hr>
+</form><br><br><br><br><hr>
 <b>JADWAL EVENT PMI INDRAMAYU</b><br><hr>
  <div class="table-responsive">          
   <table class="table table-hover">

@@ -70,7 +70,7 @@
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="visi_misi.php">Visi dan Misi</a></li>
-          <li><a href="#">Sejarah PMI</a></li>
+          <li><a href="sejarah_pmi.php">Sejarah PMI</a></li>
         </ul>
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Donor Darah<span class="caret"></span></a>
@@ -186,8 +186,12 @@ Saat ini, PMI telah berdiri di 33 Provinsi, 371 Kabupaten/Kota dan 2.654 Kecamat
     <label for="exampleInputPassword1">Password</label>
     <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
   </div>
+  <div class="form-group">
+    <label for="exampleInputCaptcha1">Captcha</label>
+    <input name="captcha" type="text" class="form-control" id="exampleInputCaptcha1" placeholder="Captcha"><img src="captcha.php">
+  </div>
   <button type="submit" class="btn btn-primary">Masuk</button>
-</form><br><br>
+</form><br><br><br><br>
 <hr><b>JADWAL EVENT PMI INDRAMAYU</b><br><hr>
  <div class="table-responsive">          
   <table class="table table-hover">
