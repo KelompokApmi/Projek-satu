@@ -13,7 +13,7 @@ if (isset($_SESSION['level']))
        include 'konten-user.php';
    }}
 else{
-    header('location: ../pmi1/index.php');
+    header('location: ../projek-satu/index.php');
 
 }
 
@@ -110,7 +110,7 @@ $id = $data['id'];
                   </div>
                   <div class="form-group">
     <label class="col-sm-3 control-label">Password</label>
-    <input name="password" type="password" class="col-sm-5 form-control" value='<?php echo"$data[password]" ?>' style="width: 250px" placeholder="Masukan Password">
+    <input name="password" type="text" class="col-sm-5 form-control" value='<?php echo"$data[password]" ?>' style="width: 250px" placeholder="Masukan Password">
   </div><hr>
    <div class="form-group">
               <label class="col-sm-3 control-label">Nomor Handphone</label>

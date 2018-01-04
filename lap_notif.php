@@ -16,7 +16,7 @@ if (isset($_SESSION['level']))
 }
 if (!isset($_SESSION['level']))
 {
-  header('location:../pmi1/index.php');
+  header('location:../projek-satu/index.php');
 }
  ?>
 <!DOCTYPE html>
