@@ -9,7 +9,13 @@ $telephone   				= $_POST['telephone'];
 
 // query SQL untuk insert data
 $query="INSERT INTO donor SET id_biodata='$id_biodata',event='$event',tempat='$tempat',tanggal_donor='$tanggal',telephone='$telephone'";
-mysqli_query($kon,$query);
-// mengalihkan ke halaman index.php
-header("location:../das_admin.php");
-?>
+mysqli_query($kon,$query);{?>
+	 <script type="text/javascript">
+ 	alert("Data Berhasil Disimpan");
+ 	window.location.href='../das_pencatatan_pendonor.php';
+ </script>
+ <?php
+}
+
+
+ ?>
