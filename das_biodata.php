@@ -52,6 +52,7 @@ else{
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <p><a href="das_biodata.php">Biodata</a></p>
+      <p><a href="galeri.php">Galeri</a></p>
       <p><a href="das_riwayatdonor.php">Riwayat Donor</a></p>
       <p><a href="kartu_donor.php">Cetak Kartu Donor</a></p>
     </div>
