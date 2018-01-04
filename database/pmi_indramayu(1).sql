@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2018 at 07:47 PM
+-- Generation Time: Jan 04, 2018 at 10:59 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -46,7 +46,7 @@ CREATE TABLE `biodata` (
 
 INSERT INTO `biodata` (`id_biodata`, `email`, `password`, `level`, `telephone`, `nama`, `jenis_kelamin`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `golongan_darah`) VALUES
 (1, '1syahrulgunawan1@gmail.com', 'kamu', 'user', '08978796985', 'SYAHRUL GUNAWAN', 'Laki-Laki', 'PATROL', 'INDRAMAYU', '1998-10-19', 'B'),
-(2, 'kamu@gmail.com', 'kamu', 'user', '08123232111', 'Koriah', 'Perempuan', 'PATROL', 'INDRAMAYU', '1998-12-09', 'A');
+(2, 'kamu@gmail.com', 'kamu', 'user', '08123232111', 'Koriah', 'Perempuan', 'PATROL', 'INDRAMAYU', '1998-12-09', 'B');
 
 -- --------------------------------------------------------
 
@@ -265,6 +265,28 @@ INSERT INTO `kirim` (`telephone`, `tglKirim`) VALUES
 ('083829144988', '2018-01-03'),
 ('08978796985', '2018-01-03'),
 ('089649800869', '2018-01-03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `komentar`
+--
+
+CREATE TABLE `komentar` (
+  `idk` int(5) NOT NULL,
+  `tglk` varchar(10) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `komentar` varchar(255) NOT NULL,
+  `flag` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`idk`, `tglk`, `nama`, `email`, `komentar`, `flag`) VALUES
+(7, '04-01-2018', 'kamu', '1syahrulgunawan1@gmail.com', '<p>sayang</p>', 1);
 
 -- --------------------------------------------------------
 
@@ -517,6 +539,12 @@ ALTER TABLE `inbox`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `komentar`
+--
+ALTER TABLE `komentar`
+  ADD PRIMARY KEY (`idk`);
+
+--
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
@@ -588,6 +616,11 @@ ALTER TABLE `galeri`
 --
 ALTER TABLE `inbox`
   MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+--
+-- AUTO_INCREMENT for table `komentar`
+--
+ALTER TABLE `komentar`
+  MODIFY `idk` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `outbox`
 --
